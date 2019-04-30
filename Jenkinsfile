@@ -27,7 +27,7 @@ pipeline {
                     stage('Sonarqube') {
                         steps {
                             withSonarQubeEnv('SonarQube') {
-                            sh "mvn  clean package sonar:sonar -Dsonar.host_url=$SONAR_HOST_URL "
+//                            sh "mvn  clean package sonar:sonar -Dsonar.host_url=$SONAR_HOST_URL "
                             }
                          }
                     }
@@ -50,18 +50,18 @@ pipeline {
         }
         stage('Run Test image') {
             steps{
-                script{
-                    value = "docker ps --all --quiet --filter=name=petclinic-test"
-                     def val= sh (returnStdout: true, script: command)
-                   //def value = "docker ps --all --quiet --filter=name='petclinic-test'".execute()
-                   //echo "value = $value.text"
-                   if ($val.text)
-                   {
-                     def stop_container="docker stop petclinic-test".execute()
-                     def rm_container="docker rm petclinic-test".execute()
-                   }
-                }
-                sh 'docker run -d --name petclinic-test -p 8090:8080 petclinic-project'
+//               script{
+//                   value = "docker ps --all --quiet --filter=name=petclinic-test"
+//                    def val= sh (returnStdout: true, script: command)
+//                  //def value = "docker ps --all --quiet --filter=name='petclinic-test'".execute()
+//                  //echo "value = $value.text"
+//                  if ($val.text)
+//                  {
+//                    def stop_container="docker stop petclinic-test".execute()
+//                    def rm_container="docker rm petclinic-test".execute()
+//                  }
+//               }
+//               sh 'docker run -d --name petclinic-test -p 8090:8080 petclinic-project'
             }
         }
 
