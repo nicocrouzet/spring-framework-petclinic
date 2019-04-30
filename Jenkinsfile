@@ -21,6 +21,7 @@ pipeline {
                    stage('Checkstyle') {
                         steps{
                             // Run the maven build with checkstyle
+                            echo "remove checkstyle because too long"
 //                            sh "mvn clean package checkstyle:checkstyle"
                          }
                      }
