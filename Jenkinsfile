@@ -48,24 +48,45 @@ pipeline {
                 }
             }
         }
-        stage('Run Test image') {
-            steps{
-                echo "no run image as it does not work"
-//               script{
-//                   value = "docker ps --all --quiet --filter=name=petclinic-test"
-//                    def val= sh (returnStdout: true, script: command)
-//                  //def value = "docker ps --all --quiet --filter=name='petclinic-test'".execute()
-//                  //echo "value = $value.text"
-//                  if ($val.text)
-//                  {
-//                    def stop_container="docker stop petclinic-test".execute()
-//                    def rm_container="docker rm petclinic-test".execute()
-//                  }
+//        stage('Run Test image non parallel') {
+//            steps{
+//                echo "no run image as it does not work"
+////                   value = "docker ps --all --quiet --filter=name=petclinic-test"
+////                    def val= sh (returnStdout: true, script: command)
+////                  //def value = "docker ps --all --quiet --filter=name='petclinic-test'".execute()
+////                  //echo "value = $value.text"
+////                  if ($val.text)
+////                  {
+////                    def stop_container="docker stop petclinic-test".execute()
+////                    def rm_container="docker rm petclinic-test".execute()
+////                  }
 //               }
-//               sh 'docker run -d --name petclinic-test -p 8090:8080 petclinic-project'
+////               sh 'docker run -d --name petclinic-test -p 8090:8080 petclinic-project'
+//            }
+//        }
+
+        stage('Run Test image Parallel 1') {
+            parallel {
+                   stage('Run 1') {
+                        steps{
+                            // Run the maven build with checkstyle
+                            echo "Run parallel 1"
+                         }
+                     }
+                   stage('Run 2') {
+                        steps{
+                            // Run the maven build with checkstyle
+                            echo "Run parallel 2"
+                         }
+                     }
+                     stage('Run 3') {
+                        steps{
+                            // Run the maven build with checkstyle
+                            echo "Run parallel 3"
+                         }
+                     }
             }
         }
-
 
 
     }
