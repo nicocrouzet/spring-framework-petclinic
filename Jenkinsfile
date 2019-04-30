@@ -72,23 +72,24 @@ pipeline {
                         steps{
                             // Run the maven build with checkstyle
                             echo "Run parallel 1"
+                            sh 'docker run -d --name petclinic-test -p 8090:8080 petclinic-project'
                          }
                      }
                    stage('Run 2') {
                         steps{
                             // Run the maven build with checkstyle
                             echo "Run parallel 2"
+                            sh 'docker run -d --name petclinic-nico -p 8190:8080 petclinic-project'
                          }
                      }
-                     stage('Run 3') {
+                   stage('Run 3') {
                         steps{
                             // Run the maven build with checkstyle
                             echo "Run parallel 3"
+                            sh 'docker run -d --name petclinic-uat -p 8290:8080 petclinic-project'
                          }
-                     }
+                   }
             }
         }
-
-
     }
 }
