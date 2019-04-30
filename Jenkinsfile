@@ -72,20 +72,15 @@ pipeline {
                         steps{
                             // Run the maven build with checkstyle
                             echo "Run parallel 1"
-                            value = sh "docker ps --all --quiet --filter=name='petclinic-test'"
-                            echo "value = $value.text"
-                            if ($val.text)
-                            {
-                                sh "docker stop petclinic-test && docker rm petclinic-test"
-                                sh 'docker run -d --name petclinic-test -p 8090:8080 petclinic-project'
-                            }
+                            sh "docker stop petclinic-test || true && docker rm petclinic-test || true"
+                            sh 'docker run -d --name petclinic-test -p 8090:8080 petclinic-project'
                          }
                      }
                    stage('Run 2') {
                         steps{
                             // Run the maven build with checkstyle
                             echo "Run parallel 2"
-                            sh "docker stop petclinic-nico && docker rm petclinic-nico"
+                            sh "docker stop petclinic-nico || true && docker rm petclinic-nico || true"
                             sh 'docker run -d --name petclinic-nico -p 8190:8080 petclinic-project'
                          }
                      }
@@ -93,7 +88,7 @@ pipeline {
                         steps{
                             // Run the maven build with checkstyle
                             echo "Run parallel 3"
-                            sh "docker stop petclinic-uat && docker rm petclinic-uat"
+                            sh "docker stop petclinic-uat || true && docker rm petclinic-uat || true"
                             sh 'docker run -d --name petclinic-uat -p 8290:8080 petclinic-project'
                          }
                    }
