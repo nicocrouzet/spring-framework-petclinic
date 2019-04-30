@@ -1,19 +1,17 @@
+#Jenkinsfile (Declarative Pipeline)
 pipeline {
     agent any
     stages {
-        stage ("build") {
+        stage('Example') {
             steps {
-                echo "build"
-            }
-        }
-        stage ("tests") {
-            steps {
-                echo "tests"
-            }
-        }
-        stage ("deploy") {
-            steps {
-                echo "deploy"
+                echo 'Hello World'
+
+                script {
+                    def browsers = ['chrome', 'firefox']
+                    for (int i = 0; i < browsers.size(); ++i) {
+                        echo "Testing the ${browsers[i]} browser"
+                    }
+                }
             }
         }
     }
