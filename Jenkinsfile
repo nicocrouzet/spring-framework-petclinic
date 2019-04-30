@@ -21,7 +21,7 @@ pipeline {
                    stage('Checkstyle') {
                         steps{
                             // Run the maven build with checkstyle
-                            sh "mvn clean package checkstyle:checkstyle"
+//                            sh "mvn clean package checkstyle:checkstyle"
                          }
                      }
                     stage('Sonarqube') {
