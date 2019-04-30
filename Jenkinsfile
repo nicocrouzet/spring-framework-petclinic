@@ -73,7 +73,7 @@ pipeline {
                             // Run the maven build with checkstyle
                             echo "Run parallel 1"
                             sh "docker stop petclinic-test || true && docker rm petclinic-test || true"
-                            sh 'docker run -d --name petclinic-test -p 8090:8080 petclinic-project'
+                            sh 'docker run -d --name petclinic-test -p 8390:8080 petclinic-project'
                          }
                      }
                    stage('Run 2') {
