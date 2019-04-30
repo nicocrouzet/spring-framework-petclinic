@@ -72,6 +72,7 @@ pipeline {
                         steps{
                             // Run the maven build with checkstyle
                             echo "Run parallel 1"
+                            sh "docker stop petclinic-test && docker rm petclinic-test"
                             sh 'docker run -d --name petclinic-test -p 8090:8080 petclinic-project'
                          }
                      }
@@ -79,6 +80,7 @@ pipeline {
                         steps{
                             // Run the maven build with checkstyle
                             echo "Run parallel 2"
+                            sh "docker stop petclinic-nico && docker rm petclinic-nico"
                             sh 'docker run -d --name petclinic-nico -p 8190:8080 petclinic-project'
                          }
                      }
@@ -86,6 +88,7 @@ pipeline {
                         steps{
                             // Run the maven build with checkstyle
                             echo "Run parallel 3"
+                            sh "docker stop petclinic-uat && docker rm petclinic-uat"
                             sh 'docker run -d --name petclinic-uat -p 8290:8080 petclinic-project'
                          }
                    }
