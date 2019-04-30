@@ -72,8 +72,13 @@ pipeline {
                         steps{
                             // Run the maven build with checkstyle
                             echo "Run parallel 1"
-                            sh "docker stop petclinic-test && docker rm petclinic-test"
-                            sh 'docker run -d --name petclinic-test -p 8090:8080 petclinic-project'
+                            def value = "docker ps --all --quiet --filter=name='petclinic-test'".execute()
+                            echo "value = $value.text"
+                            if ($val.text)
+                            {
+                                sh "docker stop petclinic-test && docker rm petclinic-test"
+                                sh 'docker run -d --name petclinic-test -p 8090:8080 petclinic-project'
+                            }
                          }
                      }
                    stage('Run 2') {
