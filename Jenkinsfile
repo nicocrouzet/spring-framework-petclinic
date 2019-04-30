@@ -50,6 +50,7 @@ pipeline {
         }
         stage('Run Test image') {
             steps{
+                echo "no run image as it does not work"
 //               script{
 //                   value = "docker ps --all --quiet --filter=name=petclinic-test"
 //                    def val= sh (returnStdout: true, script: command)
