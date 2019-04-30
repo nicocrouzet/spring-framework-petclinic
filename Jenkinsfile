@@ -72,7 +72,7 @@ pipeline {
                         steps{
                             // Run the maven build with checkstyle
                             echo "Run parallel 1"
-                            def value = "docker ps --all --quiet --filter=name='petclinic-test'".execute()
+                            value = sh "docker ps --all --quiet --filter=name='petclinic-test'"
                             echo "value = $value.text"
                             if ($val.text)
                             {
